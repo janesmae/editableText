@@ -1,6 +1,6 @@
 /**
  * editableText plugin that uses contentEditable property (FF2 is not supported)
- * Project page - http://github.com/valums/editable-text
+ * Project page - http://github.com/valums/editableText
  * Copyright (c) 2009 Andris Valums, http://valums.com
  * Licensed under the MIT license (http://valums.com/mit-license/)
  */
