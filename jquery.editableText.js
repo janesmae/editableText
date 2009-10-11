@@ -1,7 +1,7 @@
 /**
- * editableText plugin for jQuery that uses contentEditable property (FF2 is not supported)
- * Project page - http://github.com/valums/editable
- * Copyright (c) 2009 Andrew Valums, http://valums.com
+ * editableText plugin that uses contentEditable property (FF2 is not supported)
+ * Project page - http://github.com/valums/editable-text
+ * Copyright (c) 2009 Andris Valums, http://valums.com
  * Licensed under the MIT license (http://valums.com/mit-license/)
  */
 (function(){
