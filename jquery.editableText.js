@@ -52,15 +52,20 @@
 				.insertBefore(editable);
 			
 			// Save references and attach events            
-            var editEl = buttons.find('.edit').click(startEditing);				
+      var editEl = buttons.find('.edit').click(function() {
+        startEditing();
+        return false;
+      });
 							
 			buttons.find('.save').click(function(){
 				stopEditing();
 				editable.trigger(options.changeEvent);
+				return false;
 			});				
 			buttons.find('.cancel').click(function(){
 				stopEditing();
 				editable.html(prevValue);
+				return false;
 			});		
 			
 			// Display only edit button			
