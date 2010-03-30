@@ -40,7 +40,7 @@
 			/**
 			 * Save value to restore if user presses cancel
 			 */
-			var prevValue = editable.html();
+			var prevValue = '';
 			
 			// Create edit/save buttons
             var buttons = $(
@@ -53,6 +53,7 @@
 			
 			// Save references and attach events            
 			var editEl = buttons.find('.edit').click(function() {
+	  			prevValue = editable.html();	/* Every time you start editing, a new version of the data is saved. Useful for ajax websites */
 				startEditing();
 				return false;
 			});							
