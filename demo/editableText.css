@@ -1,5 +1,5 @@
 .editableText:hover{outline:1px dashed grey;}
-.editableToolbar:hover + * {outline: 1px dashed grey;}
+.editableToolbar:hover + *{outline: 1px dashed grey;}
 .editableToolbar{}
 .editableToolbar a.etText{font-size:10px;text-decoration:none;padding:2px 4px;}
 .editableToolbar a.etButton{display:block;width:17px;height:15px;float:left;margin:2px;}
