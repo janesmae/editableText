@@ -9,23 +9,15 @@
 ( function ( $ )
 {
     
-	/**
-     * Extending jQuery namespace, we
-     * could add public methods here
-     */
-	
-    $.editableText = {};
-
     /**
 	 * Usage $('selector).editableText(optionArray);
-	 * See $.editableText.defaults for valid options 
 	 */		
     
     $.fn.editableText = function ( options )
     {
         var settings = $.extend (
             {
-                newlinesEnabled : false,
+                newlinesEnabled : true,     // newlines allowed by default
                 changeEvent : 'change',
                 textButtons : false
             }, options
