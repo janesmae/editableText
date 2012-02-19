@@ -1,24 +1,8 @@
-.editableText:hover {
-	outline: 1px dashed grey;
-}
-.editableToolbar:hover + * {
-	outline: 1px dashed grey;
-}
-.editableToolbar {
-}
-.editableToolbar a{
-    display: block;
-    width: 17px;
-    height: 15px;
-    float: left;
-    margin: 2px;
-}
-.editableToolbar .edit {	
-	background: url("icons.png");
-}
-.editableToolbar .save {
-    background: url("icons.png") -16px 0;
-}
-.editableToolbar .cancel {
-    background: url("icons.png") 25px 0;
-}
+.editableText:hover{outline:1px dashed grey;}
+.editableToolbar:hover + * {outline: 1px dashed grey;}
+.editableToolbar{}
+.editableToolbar a.etText{font-size:10px;text-decoration:none;padding:2px 4px;}
+.editableToolbar a.etButton{display:block;width:17px;height:15px;float:left;margin:2px;}
+.editableToolbar .etEdit.etButton{background:url("icons.png");}
+.editableToolbar .etSave.etButton{background:url("icons.png") -16px 0;}
+.editableToolbar .etCancel.etButton{background:url("icons.png") 25px 0;}

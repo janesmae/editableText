@@ -1,3 +1,4 @@
+
 /**
  * editableText plugin that uses contentEditable property
  * Project page - http://github.com/secrgb/editableText
@@ -22,10 +23,11 @@
     
     $.fn.editableText = function ( options )
     {
-        var options = $.extend (
+        var settings = $.extend (
             {
                 newlinesEnabled : false,
-                changeEvent : 'change'
+                changeEvent : 'change',
+                textButtons : false
             }, options
             );
         
@@ -40,57 +42,81 @@
 			var prevValue = '';
 			
 			// Create edit/save buttons
-            var buttons = $("<div class='editableToolbar'>" + "<a href='#' class='edit'></a>" + "<a href='#' class='save'></a>" + "<a href='#' class='cancel'></a>" + "</div>")
-				.insertBefore(editable);
-			
-			// Save references and attach events            
-			var editEl = buttons.find('.edit').click(function() {
-	        	prevValue = editable.html();	/* Every time you start editing, a new version of the data is saved. Useful for ajax websites */
-				startEditing();
-				return false;
-			});							
-			
-			buttons.find('.save').click(function(){
-				stopEditing();
-				editable.trigger(options.changeEvent);
-				return false;
-			});
-						
-			buttons.find('.cancel').click(function(){
-				stopEditing();
-				editable.html(prevValue);
-				return false;
-			});		
-			
+
+            var buttons = $('<div/>').addClass('editableToolbar').insertBefore(editable);
+
+            if( settings.textButtons === true )
+            {
+                buttons.append( '<a href="#" class="etEdit etText">edit</a>' , '<a href="#" class="etSave etText">save</a>' , '<a href="#" class="etCancel etText">cancel</a>' );
+            }
+            else
+            {
+                buttons.append( '<a href="#" class="etEdit etButton"></a>' , '<a href="#" class="etSave etButton"></a>' , '<a href="#" class="etCancel etButton"></a>' );
+            }
+
+			// Save references and attach events
+			var editEl = buttons.find( '.etEdit' ).click( function()
+                {
+                    /* Every time you start editing, a new version of the data is saved. Useful for ajax websites */
+                    prevValue = editable.html();
+				    startEditing();
+				    return false;
+			    }
+            );
+
+			buttons.find( '.etSave' ).click( function()
+                {
+				    stopEditing();
+				    editable.trigger(settings.changeEvent);
+				    return false;
+			    }
+            );
+
+			buttons.find( '.etCancel' ).click( function()
+                {
+				    stopEditing();
+				    editable.html( prevValue );
+				    return false;
+			    }
+            );
+
 			// Display only edit button			
 			buttons.children().css('display', 'none');
-			editEl.show();			
-			
-			if (!options.newlinesEnabled){
+			editEl.show();
+
+			if ( !settings.newlinesEnabled )
+            {
 				// Prevents user from adding newlines to headers, links, etc.
-				editable.keypress(function(event){
-					// event is cancelled if enter is pressed
-					return event.which != 13;
-				});
+				editable.keypress( function( event )
+                    {
+					    // event is cancelled if enter is pressed
+					    return event.which != 13;
+				    }
+                );
 			}
-			
+
 			/**
-			 * Makes element editable
+			 * let's make the element editable
 			 */
-			function startEditing(){               
+
+            var startEditing = function ()
+            {
                 buttons.children().show();
                 editEl.hide();
-				                
 	            editable.attr('contentEditable', true);
-			}
+			};
+
 			/**
-			 * Makes element non-editable
+			 * Let's make the element non-editable
 			 */
-			function stopEditing(){
+
+            var stopEditing = function ()
+            {
 				buttons.children().hide();
-				editEl.show();				
+				editEl.show();
                 editable.attr('contentEditable', false);
-			}
+			};
+
         });
     }
 }
