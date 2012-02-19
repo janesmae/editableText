@@ -1,39 +1,36 @@
 /**
- * editableText plugin that uses contentEditable property (FF2 is not supported)
- * Project page - http://github.com/valums/editableText
+ * editableText plugin that uses contentEditable property
+ * Project page - http://github.com/secrgb/editableText
  * Copyright (c) 2009 Andris Valums, http://valums.com
- * Licensed under the MIT license (http://valums.com/mit-license/)
+ * Copyright (c) 2012 Jaan Janesmae, http://janesmae.com
+ * Licensed under the MIT license (see the LICENCE file)
  */
-(function(){
-    /**
-     * The dollar sign could be overwritten globally,
-     * but jQuery should always stay accesible
-     */
-    var $ = jQuery;
+( function ( $ )
+{
+    
 	/**
      * Extending jQuery namespace, we
      * could add public methods here
      */
-	$.editableText = {};
-    $.editableText.defaults = {		 
-		/**
-		 * Pass true to enable line breaks.
-		 * Useful with divs that contain paragraphs.
-		 */
-		newlinesEnabled : false,
-		/**
-		 * Event that is triggered when editable text is changed
-		 */
-		changeEvent : 'change'
-	};   		
-	/**
+	
+    $.editableText = {};
+
+    /**
 	 * Usage $('selector).editableText(optionArray);
 	 * See $.editableText.defaults for valid options 
 	 */		
-    $.fn.editableText = function(options){
-        var options = $.extend({}, $.editableText.defaults, options);
+    
+    $.fn.editableText = function ( options )
+    {
+        var options = $.extend (
+            {
+                newlinesEnabled : false,
+                changeEvent : 'change'
+            }, options
+            );
         
-        return this.each(function(){
+        return this.each(function ()
+            {
              // Add jQuery methods to the element
             var editable = $(this);
             
@@ -43,17 +40,12 @@
 			var prevValue = '';
 			
 			// Create edit/save buttons
-            var buttons = $(
-				"<div class='editableToolbar'>" +
-            		"<a href='#' class='edit'></a>" +
-            		"<a href='#' class='save'></a>" +
-            		"<a href='#' class='cancel'></a>" +
-            	"</div>")
+            var buttons = $("<div class='editableToolbar'>" + "<a href='#' class='edit'></a>" + "<a href='#' class='save'></a>" + "<a href='#' class='cancel'></a>" + "</div>")
 				.insertBefore(editable);
 			
 			// Save references and attach events            
 			var editEl = buttons.find('.edit').click(function() {
-	  			prevValue = editable.html();	/* Every time you start editing, a new version of the data is saved. Useful for ajax websites */
+	        	prevValue = editable.html();	/* Every time you start editing, a new version of the data is saved. Useful for ajax websites */
 				startEditing();
 				return false;
 			});							
@@ -101,4 +93,5 @@
 			}
         });
     }
-})();
+}
+)( jQuery );
